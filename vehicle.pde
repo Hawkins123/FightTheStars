@@ -41,27 +41,7 @@ class Vehicle {
     force.div(mass);
     acceleration.add(force);
   }
-
-  void arriveAt(PVector target) {
-    PVector randomizer = new PVector(random(10), random(10));
-    PVector desired = PVector.sub(target.sub(randomizer), position); 
-    // A vector pointing from the position to the target
-    float d = desired.mag();
-    if (d < 100) {
-      //are you close to your desired velocity?
-      //if so slow down
-      float m = map(d, 0, 100, 0, maxspeed);
-      desired.setMag(m);
-    } else {
-      //ignore just go at full speed
-      desired.setMag(maxspeed);
-    }
-    // Steering = Desired minus Velocity
-    PVector steer = PVector.sub(desired, velocity);
-    steer.limit(maxforce);  // Limit to maximum steering force
-    applyForce(steer);
-  }
-
+  
   void seek(PVector target) {
     // A vector pointing from the position to the target
     PVector desired = PVector.sub(target, position);
@@ -111,13 +91,9 @@ class Vehicle {
  
 
   void borders() {
-
     if (position.x < -r) position.x = width+r;
-
     if (position.y < -r) position.y = height+r;
-
     if (position.x > width+r) position.x = -r;
-
     if (position.y > height+r) position.y = -r;
   }
 
@@ -160,9 +136,6 @@ class Vehicle {
   }
 
   void run(PVector target) {
-    //controlled speed where it stops if it reaches desired value
-    arriveAt(target);
-    
     //max speed nothing will stop it
     //seek(target);
 
