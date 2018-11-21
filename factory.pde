@@ -33,24 +33,24 @@ class Factory {
     textAlign(CENTER);
     text(int(diameter-startingDiameter), mouse.x, mouse.y+9);
     p.update();
-    if (keyPressed == true) {
-      if (keyCode == UP) {
-        p.up = 1;
-      } else if (keyCode == DOWN) {
-        p.down = 1;
-      } else if (keyCode == LEFT) {
-        p.left = 1;
-      } else if (keyCode == RIGHT) {
-        p.right = 1;
-      } else if (keyCode == SHIFT) {
-        diameter = 24;
-      }
-    } else if (keyPressed == false) {
-      p.up = 0;
-      p.down = 0;
-      p.left = 0;
-      p.right = 0;
-    }
+    //if (keyPressed == true) {
+    //  if (keyCode == UP) {
+    //    p.up = 1;
+    //  } else if (keyCode == DOWN) {
+    //    p.down = 1;
+    //  } else if (keyCode == LEFT) {
+    //    p.left = 1;
+    //  } else if (keyCode == RIGHT) {
+    //     p.right = 1;
+    //   } else if (keyCode == SHIFT) {
+    //    diameter = 24;
+    //  }
+    // } else if (keyPressed == false) {
+    //  p.up = 0;
+    //  p.down = 0;
+    //  p.left = 0;
+    //  p.right = 0;
+    // }
   }
   // include shield mode
   void SelfHit() {
