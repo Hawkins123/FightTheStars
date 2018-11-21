@@ -1,12 +1,21 @@
-float diameter = 50;
+float diameter = 150;
 float startingDiameter = diameter;
+PImage[] ship = new PImage[2];
 class Factory {
   ArrayList<Vehicle> vC;
   PVector mouse;
+  PVector xmouse;
+  PVector center;
   color red = color(255, 0, 0);
+  PVector velocity;
+  float a;
+  float shipOff;
 
   Factory() {
     vC = new ArrayList<Vehicle>();
+    for (int i = 0; i < ship.length; i++) {
+      ship[i] = loadImage("shipFrameOne.png");
+    }
   }
   void addVehicle(float speed, float turnSpeed) {
     vC.add(new Vehicle( new PVector(random(width), random(height)), speed, turnSpeed));
@@ -17,21 +26,38 @@ class Factory {
     }
   }
   void updatePlayer() {
-    //store the values of the mouse
-    mouse = new PVector(p.x, p.y);
-    //mouse = new PVector(p.x,p.y);
-    // Draw an ellipse at the mouse position
+    mouse = new PVector(mouseX, mouseY);
+    xmouse = new PVector(mouse.x, mouse.y);
+    center = new PVector(pmouseX, pmouseY);
+    xmouse.sub(center); 
     fill(200);
     stroke(0);
     strokeWeight(2);
-    ellipse(mouse.x, mouse.y, diameter, diameter);
+    imageMode(CENTER);
+    pushMatrix();
+    translate(pmouseX, pmouseY);
+    float lasta = a;
+    a = atan2(xmouse.y, xmouse.x);
+    if (a==0) {
+      a = lasta;
+    }
 
+    float offset = PI/2;
+    println(a);
+    rotate(a+offset);
+    shipOff = 20;
+    image(ship[0], 0, 0, diameter-shipOff, diameter-shipOff);
+    popMatrix();
+
+    showText();
+  }
+  void showText() {
     textSize(32);
     fill(0);
     textAlign(CENTER);
     text(int(diameter-startingDiameter), mouse.x, mouse.y+9);
   }
-  
+
   // include shield mode
   void SelfHit() {
     for (int i = vC.size()-1; i >= 0; i--) {
@@ -40,7 +66,7 @@ class Factory {
       color crashY = v.selfContactY();
       color crashUP = v.selfContactUP();
       color crashDOWN = v.selfContactDOWN();
-      
+
       if (crashX==red) {
         vC.remove(i);
       } else if (crashY==red) {
@@ -56,32 +82,32 @@ class Factory {
   void sheild() {
     int w = 100;
     int h = 30;
-   // if (keyPressed == true) {
-      if (key == 'w') {
-        fill(red);
-        rectMode(CENTER);
-        noStroke();
-        rect(mouse.x, (mouse.y-50)-(diameter-startingDiameter), w, h);
-      }
-      if (key == 'a') {
-        fill(red);
-        rectMode(CENTER);
-        noStroke();
-        rect((mouse.x-50)-(diameter-startingDiameter), mouse.y, h, w);
-      }
-      if (key == 's') {
-        fill(red);
-        rectMode(CENTER);
-        noStroke();
-        rect(mouse.x, (mouse.y+50)+(diameter-startingDiameter), w, h);
-      }
-      if (key == 'd') {
-        fill(red);
-        rectMode(CENTER);
-        noStroke();
-        rect((mouse.x+50)+(diameter-startingDiameter), mouse.y, h, w);
-      }
-   //  }
+    // if (keyPressed == true) {
+    if (key == 'w') {
+      fill(red);
+      rectMode(CENTER);
+      noStroke();
+      rect(mouse.x, (mouse.y-50)-(diameter-startingDiameter), w, h);
+    }
+    if (key == 'a') {
+      fill(red);
+      rectMode(CENTER);
+      noStroke();
+      rect((mouse.x-50)-(diameter-startingDiameter), mouse.y, h, w);
+    }
+    if (key == 's') {
+      fill(red);
+      rectMode(CENTER);
+      noStroke();
+      rect(mouse.x, (mouse.y+50)+(diameter-startingDiameter), w, h);
+    }
+    if (key == 'd') {
+      fill(red);
+      rectMode(CENTER);
+      noStroke();
+      rect((mouse.x+50)+(diameter-startingDiameter), mouse.y, h, w);
+    }
+    //  }
   }
 
 
@@ -95,6 +121,7 @@ class Factory {
       if (v.contact(mouse)) {
         vC.remove(i);
         diameter+=1;
+        shipOff+=1;
       }
     }
   }
