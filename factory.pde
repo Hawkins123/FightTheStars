@@ -4,11 +4,9 @@ class Factory {
   ArrayList<Vehicle> vC;
   PVector mouse;
   color red = color(255, 0, 0);
-  player p;
 
   Factory() {
     vC = new ArrayList<Vehicle>();
-    p = new player();
   }
   void addVehicle(float speed, float turnSpeed) {
     vC.add(new Vehicle( new PVector(random(width), random(height)), speed, turnSpeed));
@@ -32,26 +30,8 @@ class Factory {
     fill(0);
     textAlign(CENTER);
     text(int(diameter-startingDiameter), mouse.x, mouse.y+9);
-    p.update();
-    //if (keyPressed == true) {
-    //  if (keyCode == UP) {
-    //    p.up = 1;
-    //  } else if (keyCode == DOWN) {
-    //    p.down = 1;
-    //  } else if (keyCode == LEFT) {
-    //    p.left = 1;
-    //  } else if (keyCode == RIGHT) {
-    //     p.right = 1;
-    //   } else if (keyCode == SHIFT) {
-    //    diameter = 24;
-    //  }
-    // } else if (keyPressed == false) {
-    //  p.up = 0;
-    //  p.down = 0;
-    //  p.left = 0;
-    //  p.right = 0;
-    // }
   }
+  
   // include shield mode
   void SelfHit() {
     for (int i = vC.size()-1; i >= 0; i--) {
