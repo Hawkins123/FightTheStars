@@ -11,11 +11,12 @@ void setup() {
 }
 void draw() {
   background(255);
+  P.input();
   P.update();
-  Bomb.hunt();
+  //Bomb.hunt();
   Shoot.hunt();
-  P.shield();
-  Bomb.SelfHit();
+  //P.shield();
+  //Bomb.SelfHit();
   Shoot.SelfHit();
   apply();
 }

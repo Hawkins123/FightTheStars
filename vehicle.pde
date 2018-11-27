@@ -31,7 +31,7 @@ class Vehicle {
     velocity.limit(maxspeed);
     //position is the change in velocity over time
     position.add(velocity);
-    // Reset accelerationelertion to 0 each cycle
+    // Reset acceleration to 0 each cycle
     acceleration.mult(0);
     lifeSpan -= 1.0;
   }
@@ -74,7 +74,7 @@ class Vehicle {
   void display() {
     // Draw a triangle rotated in the direction of mouse 
     // basically the desired velocity
-    float theta = velocity.heading2D() + PI/2;
+    float theta = velocity.heading() + PI/2;
     fill(255, 0, 0, lifeSpan);
     stroke(255, 0, 0, lifeSpan);
     strokeWeight(1);
