@@ -31,7 +31,7 @@ class Vehicle {
     velocity.limit(maxspeed);
     //position is the change in velocity over time
     position.add(velocity);
-    // Reset acceleration to 0 each cycle
+    // Reset accelerationelertion to 0 each cycle
     acceleration.mult(0);
     lifeSpan -= 1.0;
   }
@@ -63,7 +63,7 @@ class Vehicle {
   }
 
   boolean contact(PVector target) {
-    int limit = int(health/2)+int((2*r)+1);
+    int limit = int(diameter/2)+int((2*r)+1);
     if (position.x <= target.x + limit && position.x >= target.x -limit && position.y <= target.y + limit && position.y >= target.y -limit) {
       return true;
     } else {
@@ -74,7 +74,7 @@ class Vehicle {
   void display() {
     // Draw a triangle rotated in the direction of mouse 
     // basically the desired velocity
-    float theta = velocity.heading() + PI/2;
+    float theta = velocity.heading2D() + PI/2;
     fill(255, 0, 0, lifeSpan);
     stroke(255, 0, 0, lifeSpan);
     strokeWeight(1);
