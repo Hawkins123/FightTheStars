@@ -1,46 +1,69 @@
-
 PImage[] ship = new PImage[2];
 float health = 150;
 float startingHealth = health;
-
 PVector mouse;
-PVector xmouse;
-PVector center;
-PVector velocity;
-float xDelta;
-float yDelta;
-float x = 100;
-float y = 100;
 float shipOff;
-float thrust = 0;
-float turn = 0;
-float angle;
-float offset = PI/2;
 
 class Player {
-  PVector position;
+  float xDelta;
+  float yDelta;
+  float x = 100;
+  float y = 100;
+
+  float thrust = 0;
+  float turn = 0;
+  float angle;
+  float offset = PI/2;
+
   color red = color(255, 0, 0);
+
+  Player() {
+    for (int i = 0; i < ship.length; i++) {
+      ship[i] = loadImage("shipFrameOne.png");
+    }
+  }
 
   void input() {
   }
 
-  void update() {
+  void movement() {
     if (keyPressed == true) {
       if (key == 'w') {
-        thrust = 3;
-      } else if (key == 's') {
-        thrust = -1;
-      } else {
-        thrust = 0;
+        thrust = 10;
       }
+    } else {
+      thrust = 0;
+    }
+
+    if (keyPressed == true) { 
+      if (key == 's') {
+        thrust = -1;
+      }
+    } else {
+      thrust = 0;
+    }
+
+    if (keyPressed == true) {
       if (key == 'a') {
         turn = -PI/48;
-      }else if (key == 'd') {
-        turn = PI/48;
-      } else {
-        turn = 0;
       }
+    } else {
+      turn = 0;
     }
+
+    if (keyPressed == true) {
+      if (key == 'd') {
+        turn = PI/48;
+      }
+    } else {
+      turn = 0;
+    }
+  }
+
+  void update() {
+
+    movement();
+
     fill(200);
     stroke(0);
     strokeWeight(2);
@@ -52,6 +75,7 @@ class Player {
     translate(x + xDelta, y + yDelta);
     x += xDelta;
     y += yDelta;
+    mouse = new PVector(x, y);
     //float lastTurn = turn;
     //if (turn==0) {
     //  turn = lastTurn;
