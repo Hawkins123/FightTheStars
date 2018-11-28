@@ -5,9 +5,6 @@ class BombFactory {
 
   BombFactory() {
     vC = new ArrayList<Vehicle>();
-    for (int i = 0; i < ship.length; i++) {
-      ship[i] = loadImage("shipFrameOne.png");
-    }
   }
   void addVehicle(float speed, float turnSpeed) {
     vC.add(new Vehicle( new PVector(random(width), random(height)), speed, turnSpeed));
