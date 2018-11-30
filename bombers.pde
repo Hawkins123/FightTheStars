@@ -46,6 +46,11 @@ class BombFactory {
       if (v.isDead()) {
         vC.remove(i);
       }
+        void run(PVector target) {
+    //max speed nothing will stop it
+    seek(target);
+    image(ship[0], 0, 0, health-shipOff, health-shipOff);
+    }
       if (v.contact(mouse)) {
         vC.remove(i);
         health-=1;
