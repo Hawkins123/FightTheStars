@@ -1,10 +1,14 @@
-
+PImage[] shoot = new PImage[4];
 class ShootFactory {
   ArrayList<Vehicle> vC;
   color red = color(255, 0, 0);
 
   ShootFactory() {
     vC = new ArrayList<Vehicle>();
+    shoot[0] = loadImage("shootFrameOne.png");
+    shoot[1] = loadImage("shootFrameTwo.png");
+    shoot[2] = loadImage("shootFrameThree.png");
+    shoot[3] = loadImage("shootFrameFour.png");
   }
   void addVehicle(float speed, float turnSpeed) {
     vC.add(new Vehicle( new PVector(random(width), random(height)), speed, turnSpeed));
