@@ -45,7 +45,7 @@ class Player {
 
     if (keyPressed == true) {
       if (key == 'a') {
-        turn = -PI/48;
+        turn = -PI/96;
       }
     } else {
       turn = 0;
@@ -53,7 +53,7 @@ class Player {
 
     if (keyPressed == true) {
       if (key == 'd') {
-        turn = PI/48;
+        turn = PI/96;
       }
     } else {
       turn = 0;
