@@ -1,10 +1,13 @@
-
+PImage[] bomb = new PImage[3];
 class BombFactory {
   ArrayList<Vehicle> vC;
   color red = color(255, 0, 0);
 
   BombFactory() {
     vC = new ArrayList<Vehicle>();
+    bomb[0] = loadImage("bombFrameOne.png");
+    bomb[1] = loadImage("bombFrameTwo.png");
+    bomb[2] = loadImage("bombFrameThree.png");
   }
   void addVehicle(float speed, float turnSpeed) {
     vC.add(new Vehicle( new PVector(random(width), random(height)), speed, turnSpeed));
